@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "WarehouseOps.Application/1.0.0": {
+        "dependencies": {
+          "WarehouseOps.Domain": "1.0.0"
+        },
+        "runtime": {
+          "WarehouseOps.Application.dll": {}
+        }
+      },
+      "WarehouseOps.Domain/1.0.0": {
+        "runtime": {
+          "WarehouseOps.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "WarehouseOps.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "WarehouseOps.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

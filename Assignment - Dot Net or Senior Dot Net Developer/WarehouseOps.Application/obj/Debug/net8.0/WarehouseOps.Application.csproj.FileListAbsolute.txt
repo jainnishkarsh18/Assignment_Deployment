@@ -1,0 +1,15 @@
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\bin\Debug\net8.0\WarehouseOps.Application.deps.json
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\bin\Debug\net8.0\WarehouseOps.Application.dll
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\bin\Debug\net8.0\WarehouseOps.Application.pdb
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\bin\Debug\net8.0\WarehouseOps.Domain.dll
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\bin\Debug\net8.0\WarehouseOps.Domain.pdb
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.csproj.AssemblyReference.cache
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.AssemblyInfoInputs.cache
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.AssemblyInfo.cs
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.csproj.CoreCompileInputs.cache
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\obj\Debug\net8.0\Warehous.141999E2.Up2Date
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.dll
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\obj\Debug\net8.0\refint\WarehouseOps.Application.dll
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.pdb
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\obj\Debug\net8.0\ref\WarehouseOps.Application.dll

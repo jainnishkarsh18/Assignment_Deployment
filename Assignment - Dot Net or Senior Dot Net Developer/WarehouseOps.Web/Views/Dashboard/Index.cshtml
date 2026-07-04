@@ -1,0 +1,53 @@
+@using WarehouseOps.Application.DTOs
+@model DashboardDto
+@{ ViewBag.Title = "Dashboard"; }
+
+<h2>Dashboard — <span class="text-muted fs-5">@ViewBag.TenantSlug</span></h2>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-2"><div class="card text-center p-3"><h4>@Model.TotalProducts</h4><small>Products</small></div></div>
+    <div class="col-md-2"><div class="card text-center p-3 @(Model.BelowReorderCount > 0 ? "border-warning" : "")"><h4>@Model.BelowReorderCount</h4><small>Low Stock</small></div></div>
+    <div class="col-md-2"><div class="card text-center p-3"><h4>@Model.PendingOrders</h4><small>Pending Orders</small></div></div>
+    <div class="col-md-2"><div class="card text-center p-3 @(Model.OverdueOrders > 0 ? "border-danger" : "")"><h4>@Model.OverdueOrders</h4><small>Overdue Orders</small></div></div>
+    <div class="col-md-3"><div class="card text-center p-3"><h4>@Model.TotalStockValue.ToString("C")</h4><small>Total Stock Value</small></div></div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <h5>Stock by Category</h5>
+        <table class="table table-sm table-bordered">
+            <thead class="table-dark"><tr><th>Category</th><th>Products</th><th>Total Value</th></tr></thead>
+            <tbody>
+                @foreach (var c in Model.StockByCategory)
+                {
+                    <tr><td>@c.Category</td><td>@c.ProductCount</td><td>@c.TotalValue.ToString("C")</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h5>Top 5 Moved Products (Last 30 Days)</h5>
+        <table class="table table-sm table-bordered">
+            <thead class="table-dark"><tr><th>Product</th><th>SKU</th><th>Total Outbound</th></tr></thead>
+            <tbody>
+                @foreach (var t in Model.TopMovedProducts)
+                {
+                    <tr><td>@t.ProductName</td><td>@t.SKU</td><td>@t.TotalOutbound</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@if (ViewBag.OverdueOrders is IEnumerable<WarehouseOps.Application.DTOs.OrderDto> overdueOrders && overdueOrders.Any())
+{
+    <div class="alert alert-danger mt-3">
+        <strong>⚠ @overdueOrders.Count() overdue order(s)</strong>
+        <ul class="mb-0 mt-1">
+            @foreach (var o in overdueOrders)
+            {
+                <li>@o.OrderNumber — @o.CustomerName — ordered @o.OrderedAt.ToString("MMM dd")</li>
+            }
+        </ul>
+    </div>
+}

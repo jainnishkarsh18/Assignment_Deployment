@@ -1,0 +1,165 @@
+@model WarehouseOps.Web.ViewModels.ProductListViewModel
+@{ ViewBag.Title = "Stock Management"; }
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Stock Management</h2>
+    <span class="badge bg-secondary">Tenant: @ViewBag.TenantSlug</span>
+</div>
+
+<!-- Filters -->
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-3">
+        <input name="category" value="@Model.CategoryFilter" class="form-control" placeholder="Filter by category" />
+    </div>
+    <div class="col-md-3">
+        @{
+            var belowVal = Model.BelowReorderFilter?.ToString().ToLower() ?? "";
+        }
+        <select name="belowReorder" class="form-select">
+            <option value="" selected="@(belowVal == "" ? "selected" : null)">All Stock Levels</option>
+            <option value="true" selected="@(belowVal == "true" ? "selected" : null)">Below Reorder Only</option>
+            <option value="false" selected="@(belowVal == "false" ? "selected" : null)">Above Reorder Only</option>
+        </select>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Filter</button>
+        <a asp-action="Index" class="btn btn-secondary">Clear</a>
+    </div>
+</form>
+
+<!-- Products Table -->
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr><th>SKU</th><th>Name</th><th>Category</th><th>Stock</th><th>Reorder At</th><th>Unit Price</th><th>Status</th><th></th></tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.Products)
+        {
+            <tr class="@(p.IsBelowReorder ? "table-warning" : "")">
+                <td>@p.SKU</td>
+                <td>@p.Name</td>
+                <td>@p.Category</td>
+                <td><strong>@p.CurrentStock</strong></td>
+                <td>@p.ReorderLevel</td>
+                <td>@p.UnitPrice.ToString("C")</td>
+                <td>@(p.IsBelowReorder ? "⚠ Low Stock" : "✓ OK")</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-primary btn-record" data-id="@p.Id" data-name="@p.Name">Record Movement</button>
+                    <button class="btn btn-sm btn-outline-secondary btn-history" data-id="@p.Id" data-name="@p.Name">History</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Pagination -->
+@if (Model.TotalPages > 1)
+{
+    <nav><ul class="pagination">
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                <a class="page-link" asp-action="Index"
+                   asp-route-page="@i"
+                   asp-route-category="@Model.CategoryFilter"
+                   asp-route-belowReorder="@Model.BelowReorderFilter">@i</a>
+            </li>
+        }
+    </ul></nav>
+}
+
+<!-- Record Movement Modal -->
+<div class="modal fade" id="movementModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title">Record Movement — <span id="movProductName"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="movError" class="alert alert-danger d-none"></div>
+                <input type="hidden" id="movProductId" />
+                <div class="mb-2">
+                    <label class="form-label">Type</label>
+                    <select id="movType" class="form-select">
+                        <option value="Inbound">Inbound</option>
+                        <option value="Outbound">Outbound</option>
+                        <option value="Adjustment">Adjustment</option>
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Quantity</label>
+                    <input type="number" id="movQty" class="form-control" min="1" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Reference</label>
+                    <input type="text" id="movRef" class="form-control" placeholder="e.g. PO-123" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Notes (optional)</label>
+                    <input type="text" id="movNotes" class="form-control" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" id="btnSaveMovement">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- History Panel -->
+<div class="modal fade" id="historyModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title">Movement History — <span id="histProductName"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="historyBody">Loading...</div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    $(".btn-record").click(function () {
+        $("#movProductId").val($(this).data("id"));
+        $("#movProductName").text($(this).data("name"));
+        $("#movError").addClass("d-none");
+        new bootstrap.Modal(document.getElementById("movementModal")).show();
+    });
+
+    $("#btnSaveMovement").click(function () {
+        $.post('@Url.Action("RecordMovement")', {
+            ProductId: $("#movProductId").val(),
+            Type:      $("#movType").val(),
+            Quantity:  $("#movQty").val(),
+            Reference: $("#movRef").val(),
+            Notes:     $("#movNotes").val()
+        }, function (res) {
+            if (res.success) {
+                bootstrap.Modal.getInstance(document.getElementById("movementModal")).hide();
+                location.reload();
+            } else {
+                $("#movError").text(res.error).removeClass("d-none");
+            }
+        });
+    });
+
+    $(".btn-history").click(function () {
+        var id = $(this).data("id");
+        $("#histProductName").text($(this).data("name"));
+        $("#historyBody").html("Loading...");
+        var modal = new bootstrap.Modal(document.getElementById("historyModal"));
+        modal.show();
+        $.getJSON('@Url.Action("MovementHistory")/' + id, function (data) {
+            if (!data.length) { $("#historyBody").html("<p>No movements found.</p>"); return; }
+            var html = '<table class="table table-sm"><thead><tr><th>Type</th><th>Qty</th><th>Reference</th><th>By</th><th>Date</th></tr></thead><tbody>';
+            $.each(data, function (_, m) {
+                html += `<tr><td>${m.type}</td><td>${m.quantity}</td><td>${m.reference}</td><td>${m.createdBy}</td><td>${m.createdAt}</td></tr>`;
+            });
+            html += '</tbody></table>';
+            $("#historyBody").html(html);
+        });
+    });
+</script>
+}

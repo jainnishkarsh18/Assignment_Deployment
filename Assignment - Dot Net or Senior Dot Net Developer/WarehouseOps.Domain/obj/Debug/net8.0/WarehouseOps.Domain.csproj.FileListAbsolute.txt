@@ -1,0 +1,11 @@
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Domain\bin\Debug\net8.0\WarehouseOps.Domain.deps.json
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Domain\bin\Debug\net8.0\WarehouseOps.Domain.dll
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Domain\bin\Debug\net8.0\WarehouseOps.Domain.pdb
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Domain\obj\Debug\net8.0\WarehouseOps.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Domain\obj\Debug\net8.0\WarehouseOps.Domain.AssemblyInfoInputs.cache
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Domain\obj\Debug\net8.0\WarehouseOps.Domain.AssemblyInfo.cs
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Domain\obj\Debug\net8.0\WarehouseOps.Domain.csproj.CoreCompileInputs.cache
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Domain\obj\Debug\net8.0\WarehouseOps.Domain.dll
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Domain\obj\Debug\net8.0\refint\WarehouseOps.Domain.dll
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Domain\obj\Debug\net8.0\WarehouseOps.Domain.pdb
+D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Domain\obj\Debug\net8.0\ref\WarehouseOps.Domain.dll
