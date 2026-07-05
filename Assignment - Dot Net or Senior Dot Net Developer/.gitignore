@@ -1,0 +1,46 @@
+# Build output
+**/bin/
+**/obj/
+
+# Visual Studio
+.vs/
+
+# VS Code
+.vscode/
+
+# Rider
+.idea/
+
+# User files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+logs/
+
+# Test Results
+TestResults/
+coverage/
+coverage-report/
+
+# Publish
+publish/
+
+# NuGet
+packages/
+*.nupkg
+
+# SQL Server
+*.mdf
+*.ldf
+
+# Environment
+.env
+.env.*
+
+# OS files
+Thumbs.db
+.DS_Store
