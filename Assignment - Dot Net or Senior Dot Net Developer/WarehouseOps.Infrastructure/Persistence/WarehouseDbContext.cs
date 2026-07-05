@@ -16,9 +16,17 @@ public class WarehouseDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<StockMovement>().Property(s => s.Type).HasConversion<string>();
-        modelBuilder.Entity<Order>().Property(o => o.Status).HasConversion<string>();
-        modelBuilder.Entity<StockAlert>().Property(a => a.Severity).HasConversion<string>();
+        modelBuilder.Entity<StockMovement>()
+            .Property(s => s.Type)
+            .HasConversion<string>();
+
+        modelBuilder.Entity<Order>()
+            .Property(o => o.Status)
+            .HasConversion<string>();
+
+        modelBuilder.Entity<StockAlert>()
+            .Property(a => a.Severity)
+            .HasConversion<string>();
 
         modelBuilder.Entity<Product>()
             .HasIndex(p => new { p.TenantId, p.SKU })
@@ -27,5 +35,25 @@ public class WarehouseDbContext : DbContext
         modelBuilder.Entity<Order>()
             .HasIndex(o => new { o.TenantId, o.OrderNumber })
             .IsUnique();
+
+        modelBuilder.Entity<Product>()
+            .Property(p => p.UnitPrice)
+            .HasPrecision(18, 2);
+
+        modelBuilder.Entity<OrderLine>()
+            .Property(ol => ol.UnitPriceAtOrder)
+            .HasPrecision(18, 2);
+
+        modelBuilder.Entity<OrderLine>()
+            .HasOne(ol => ol.Product)
+            .WithMany(p => p.OrderLines)
+            .HasForeignKey(ol => ol.ProductId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder.Entity<StockMovement>()
+            .HasOne(sm => sm.Product)
+            .WithMany(p => p.StockMovements)
+            .HasForeignKey(sm => sm.ProductId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

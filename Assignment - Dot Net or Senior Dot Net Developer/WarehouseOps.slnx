@@ -1,7 +1,0 @@
-<Solution>
-  <Project Path="WarehouseOps.Api/WarehouseOps.Api.csproj" />
-  <Project Path="WarehouseOps.Application/WarehouseOps.Application.csproj" />
-  <Project Path="WarehouseOps.Domain/WarehouseOps.Domain.csproj" />
-  <Project Path="WarehouseOps.Infrastructure/WarehouseOps.Infrastructure.csproj" />
-  <Project Path="WarehouseOps.Web/WarehouseOps.Web.csproj" />
-</Solution>

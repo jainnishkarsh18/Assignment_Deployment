@@ -13,3 +13,19 @@ D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\Warehous
 D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\obj\Debug\net8.0\refint\WarehouseOps.Application.dll
 D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.pdb
 D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Application\obj\Debug\net8.0\ref\WarehouseOps.Application.dll
+C:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\bin\Debug\net8.0\WarehouseOps.Application.deps.json
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\bin\Debug\net8.0\WarehouseOps.Application.dll
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\bin\Debug\net8.0\WarehouseOps.Application.pdb
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\bin\Debug\net8.0\WarehouseOps.Domain.dll
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\bin\Debug\net8.0\WarehouseOps.Domain.pdb
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.csproj.AssemblyReference.cache
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.AssemblyInfoInputs.cache
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.AssemblyInfo.cs
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.csproj.CoreCompileInputs.cache
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.sourcelink.json
+C:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\obj\Debug\net8.0\Warehous.141999E2.Up2Date
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.dll
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\obj\Debug\net8.0\refint\WarehouseOps.Application.dll
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\obj\Debug\net8.0\WarehouseOps.Application.pdb
+C:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Application\obj\Debug\net8.0\ref\WarehouseOps.Application.dll

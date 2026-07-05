@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using WarehouseOps.Application.DTOs;
 
 namespace WarehouseOps.Web.ViewModels;
 

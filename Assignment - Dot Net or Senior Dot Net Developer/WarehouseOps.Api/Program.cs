@@ -6,12 +6,37 @@ using WarehouseOps.Infrastructure.Middleware;
 using WarehouseOps.Infrastructure.Persistence;
 using WarehouseOps.Infrastructure.Repositories;
 using WarehouseOps.Infrastructure.Seed;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("TenantHeader", new OpenApiSecurityScheme
+    {
+        Name = "X-Tenant-Slug",
+        Type = SecuritySchemeType.ApiKey,
+        In = ParameterLocation.Header,
+        Description = "Tenant Slug (warehouse-alpha or warehouse-beta)"
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "TenantHeader"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
 
 builder.Services.AddDbContext<WarehouseDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -27,6 +52,10 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 
 // TODO (CANDIDATE): Same TenantContext registration as Web project
+builder.Services.AddScoped<TenantContext>();
+
+builder.Services.AddScoped<ITenantContext>(sp =>
+    sp.GetRequiredService<TenantContext>());
 
 var app = builder.Build();
 
@@ -41,6 +70,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 // TODO (CANDIDATE): app.UseMiddleware<TenantResolutionMiddleware>();
+app.UseMiddleware<TenantResolutionMiddleware>();
 
 app.MapControllers();
 app.Run();

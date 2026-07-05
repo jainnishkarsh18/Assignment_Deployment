@@ -30,27 +30,39 @@ public class StockService : IStockService
     //        This means page 1 of 10 items may return fewer than 10 results (or zero)
     //        even when matching records exist on later "raw" pages.
     //        Fix: filter first, then paginate. TotalCount must also reflect the filtered count.
+
+    // FIX 1:
+    // Problem:
+    // Filtering was applied after pagination, so matching records on later pages were never considered.
+    //
+    // Production Impact:
+    // Users could receive incomplete or empty pages even though matching products exist.
+    // TotalCount was also incorrect because it represented only the current page.
+    //
+    // Why this fix is correct:
+    // Apply all filters first, calculate the total filtered count, then paginate the filtered result.
     public async Task<PagedResult<ProductDto>> GetProductsAsync(int page, int pageSize, string? category, bool? belowReorder)
     {
         var all = await _products.GetByTenantAsync(_tenant.TenantId);
 
-        var paged = all
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
-            .ToList();
-
-        var filtered = paged
+        var filtered = all
             .Where(p => string.IsNullOrEmpty(category) || p.Category == category)
             .Where(p => belowReorder == null || (p.CurrentStock <= p.ReorderLevel) == belowReorder)
             .Select(MapToDto)
             .ToList();
 
+        var paged = filtered
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
+
+
         return new PagedResult<ProductDto>
         {
-            Items      = filtered,
-            TotalCount = filtered.Count,   // wrong — should be count of ALL filtered, not just this page
-            Page       = page,
-            PageSize   = pageSize
+            Items = paged,
+            TotalCount = filtered.Count,
+            Page = page,
+            PageSize = pageSize
         };
     }
 
@@ -71,31 +83,63 @@ public class StockService : IStockService
         if (product is null || product.TenantId != _tenant.TenantId)
             return Result<StockMovementDto>.Failure("Product not found.");
 
+        // FIX 3:
+        // Problem:
+        // Outbound movements were allowed even when available stock was insufficient.
+        //
+        // Production Impact:
+        // Product stock could become negative, leading to invalid inventory records.
+        //
+        // Why this fix is correct:
+        // Validate stock before applying an outbound movement and reject the request if stock is insufficient.
+
+        if (movementType == StockMovementType.Outbound &&
+            product.CurrentStock < dto.Quantity)
+        {
+            return Result<StockMovementDto>.Failure("Insufficient stock available.");
+        }
+
         var movement = new StockMovement
         {
-            TenantId  = _tenant.TenantId,
+            TenantId = _tenant.TenantId,
             ProductId = dto.ProductId,
-            Type      = movementType,
-            Quantity  = dto.Quantity,
+            Type = movementType,
+            Quantity = dto.Quantity,
             Reference = dto.Reference,
             CreatedBy = createdBy,
             CreatedAt = DateTime.UtcNow,
-            Notes     = dto.Notes
+            Notes = dto.Notes
         };
+
+        // BUG 2: saved before stock is updated
+
+        // FIX 2:
+        // Problem:
+        // Stock movement was saved before updating product stock.
+        //
+        // Production Impact:
+        // If product update failed afterwards, the movement would exist but stock would remain unchanged,
+        // causing inconsistent inventory data.
+        //
+        // Why this fix is correct:
+        // Update both entities first and persist them together with a single SaveChangesAsync call.
 
         await _movements.AddAsync(movement);
-        await _movements.SaveChangesAsync();   // BUG 2: saved before stock is updated
 
         // Stock adjustment — BUG 3: no check for negative stock on Outbound
+
         product.CurrentStock += movementType switch
         {
-            StockMovementType.Inbound    =>  dto.Quantity,
-            StockMovementType.Outbound   => -dto.Quantity,
-            StockMovementType.Adjustment =>  dto.Quantity,
+            StockMovementType.Inbound => dto.Quantity,
+            StockMovementType.Outbound => -dto.Quantity,
+            StockMovementType.Adjustment => dto.Quantity,
             _ => 0
         };
+
         _products.Update(product);
-        await _products.SaveChangesAsync();
+
+        // Save once after both movement and stock update.
+        await _movements.SaveChangesAsync();
 
         return Result<StockMovementDto>.Success(new StockMovementDto(
             movement.Id,
@@ -115,11 +159,23 @@ public class StockService : IStockService
     //        Fix: pass _tenant.TenantId into GetByProductAsync.
     public async Task<IEnumerable<StockMovementDto>> GetMovementHistoryAsync(int productId, DateTime? from, DateTime? to)
     {
-        var movements = await _movements.GetByProductAsync(0, productId);   // BUG 4: tenantId hardcoded to 0
+        // BUG 4: tenantId hardcoded to 0
+
+        // FIX 4:
+        // Problem:
+        // Tenant ID was hardcoded to 0, allowing movement history from other tenants.
+        //
+        // Production Impact:
+        // This creates a serious multi-tenant security issue by exposing another tenant's inventory history.
+        //
+        // Why this fix is correct:
+        // Always query using the current tenant so each tenant only accesses its own data.
+
+        var movements = await _movements.GetByProductAsync(_tenant.TenantId, productId);
 
         return movements
             .Where(m => from == null || m.CreatedAt >= from)
-            .Where(m => to   == null || m.CreatedAt <= to)
+            .Where(m => to == null || m.CreatedAt <= to)
             .OrderByDescending(m => m.CreatedAt)
             .Select(m => new StockMovementDto(
                 m.Id,
@@ -138,7 +194,20 @@ public class StockService : IStockService
     //        Fix: pass _tenant.TenantId to GetBelowReorderLevelAsync.
     public async Task<IEnumerable<ProductDto>> GetLowStockAlertsAsync()
     {
-        var products = await _products.GetBelowReorderLevelAsync(0);   // BUG 5: tenantId hardcoded to 0
+
+        // BUG 5: tenantId hardcoded to 0
+
+        // FIX 5:
+        // Problem:
+        // Low-stock alerts ignored tenant filtering and returned products for all tenants.
+        //
+        // Production Impact:
+        // Users could view inventory information belonging to other organizations.
+        //
+        // Why this fix is correct:
+        // Pass the current tenant ID so only the current tenant's products are returned.
+
+        var products = await _products.GetBelowReorderLevelAsync(_tenant.TenantId);
         return products.Select(MapToDto);
     }
 

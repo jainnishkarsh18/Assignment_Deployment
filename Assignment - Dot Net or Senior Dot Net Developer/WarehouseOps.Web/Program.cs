@@ -35,6 +35,11 @@ builder.Services.AddScoped<IDashboardService, DashboardService>();
 //     4. Returns 400 if header is missing, 404 if tenant not found or inactive
 // - Register the middleware below using app.UseMiddleware<TenantResolutionMiddleware>()
 
+builder.Services.AddScoped<TenantContext>();
+
+builder.Services.AddScoped<ITenantContext>(sp =>
+    sp.GetRequiredService<TenantContext>());
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -51,6 +56,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 // TODO (CANDIDATE): app.UseMiddleware<TenantResolutionMiddleware>(); — add here after implementing it
+app.UseMiddleware<TenantResolutionMiddleware>();
 
 app.MapControllerRoute(
     name: "default",

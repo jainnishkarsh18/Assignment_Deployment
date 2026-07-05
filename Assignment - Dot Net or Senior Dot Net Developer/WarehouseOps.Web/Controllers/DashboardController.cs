@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WarehouseOps.Application.Interfaces;
+using WarehouseOps.Web.ViewModels;
 
 namespace WarehouseOps.Web.Controllers;
 
@@ -11,7 +12,7 @@ public class DashboardController : Controller
     public DashboardController(IDashboardService dashboard, IOrderService orders)
     {
         _dashboard = dashboard;
-        _orders    = orders;
+        _orders = orders;
     }
 
     // TODO: Implement Index
@@ -20,6 +21,11 @@ public class DashboardController : Controller
     // - Also fetch overdue orders via _orders.GetOverdueOrdersAsync() and pass to view
     public async Task<IActionResult> Index()
     {
-        throw new NotImplementedException("TODO: implement dashboard");
+        var dashboard = await _dashboard.GetDashboardAsync();
+        var overdueOrders = await _orders.GetOverdueOrdersAsync();
+
+        ViewBag.OverdueOrders = overdueOrders;
+
+        return View(dashboard);
     }
 }

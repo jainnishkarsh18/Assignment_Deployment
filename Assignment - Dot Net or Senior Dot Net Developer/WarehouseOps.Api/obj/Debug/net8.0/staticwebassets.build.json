@@ -1,1 +1,11 @@
-{"Version":1,"Hash":"fyFgZeuUx/lQBSCSQFNw8tJsXaG09TIZpRUhjEygLy0=","Source":"WarehouseOps.Api","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
+{
+  "Version": 1,
+  "Hash": "+ABlVvfClMaITYtxKSGVag3ZbpAg4IKMoPFOzJdixLQ=",
+  "Source": "WarehouseOps.Api",
+  "BasePath": "_content/WarehouseOps.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

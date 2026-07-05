@@ -17,3 +17,23 @@ D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\Warehous
 D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Infrastructure\obj\Debug\net8.0\WarehouseOps.Infrastructure.pdb
 D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Infrastructure\obj\Debug\net8.0\WarehouseOps.Infrastructure.genruntimeconfig.cache
 D:\Users\Om.yadav\source\repos\Interviews\Assignment under 4-7 year exp\WarehouseOps.Infrastructure\obj\Debug\net8.0\ref\WarehouseOps.Infrastructure.dll
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\bin\Debug\net8.0\WarehouseOps.Infrastructure.deps.json
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\bin\Debug\net8.0\WarehouseOps.Infrastructure.runtimeconfig.json
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\bin\Debug\net8.0\WarehouseOps.Infrastructure.dll
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\bin\Debug\net8.0\WarehouseOps.Infrastructure.pdb
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\bin\Debug\net8.0\WarehouseOps.Application.dll
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\bin\Debug\net8.0\WarehouseOps.Domain.dll
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\bin\Debug\net8.0\WarehouseOps.Domain.pdb
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\bin\Debug\net8.0\WarehouseOps.Application.pdb
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\obj\Debug\net8.0\WarehouseOps.Infrastructure.csproj.AssemblyReference.cache
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\obj\Debug\net8.0\WarehouseOps.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\obj\Debug\net8.0\WarehouseOps.Infrastructure.AssemblyInfoInputs.cache
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\obj\Debug\net8.0\WarehouseOps.Infrastructure.AssemblyInfo.cs
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\obj\Debug\net8.0\WarehouseOps.Infrastructure.csproj.CoreCompileInputs.cache
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\obj\Debug\net8.0\WarehouseOps.Infrastructure.sourcelink.json
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\obj\Debug\net8.0\Warehous.3FEDDB23.Up2Date
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\obj\Debug\net8.0\WarehouseOps.Infrastructure.dll
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\obj\Debug\net8.0\refint\WarehouseOps.Infrastructure.dll
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\obj\Debug\net8.0\WarehouseOps.Infrastructure.pdb
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\obj\Debug\net8.0\WarehouseOps.Infrastructure.genruntimeconfig.cache
+c:\Users\jainn\OneDrive\Desktop\Assignment\Assignment - Dot Net or Senior Dot Net Developer\WarehouseOps.Infrastructure\obj\Debug\net8.0\ref\WarehouseOps.Infrastructure.dll

@@ -22,10 +22,10 @@ public class DashboardService : IDashboardService
         IStockMovementRepository movements,
         ITenantContext tenant)
     {
-        _products  = products;
-        _orders    = orders;
+        _products = products;
+        _orders = orders;
         _movements = movements;
-        _tenant    = tenant;
+        _tenant = tenant;
     }
 
     // TODO: Implement GetDashboardAsync
@@ -51,6 +51,50 @@ public class DashboardService : IDashboardService
     //            We will ask you about this in the walkthrough.
     public async Task<DashboardDto> GetDashboardAsync()
     {
-        throw new NotImplementedException("TODO: implement dashboard aggregation");
+        var products = (await _products.GetByTenantAsync(_tenant.TenantId)).ToList();
+        var orders = (await _orders.GetByTenantAsync(_tenant.TenantId, null)).ToList();
+        var movements = (await _movements.GetByTenantAsync(
+            _tenant.TenantId,
+            DateTime.UtcNow.AddDays(-30),
+            DateTime.UtcNow)).ToList();
+
+        return new DashboardDto(
+            TotalProducts: products.Count,
+
+            BelowReorderCount: products.Count(p =>
+                p.CurrentStock <= p.ReorderLevel),
+
+            PendingOrders: orders.Count(o =>
+                o.Status == OrderStatus.Pending),
+
+            OverdueOrders: orders.Count(o =>
+                o.Status == OrderStatus.Pending &&
+                o.OrderedAt < DateTime.UtcNow.AddDays(-3)),
+
+            TotalStockValue: products.Sum(p =>
+                p.CurrentStock * p.UnitPrice),
+
+            StockByCategory: products
+                .GroupBy(p => p.Category)
+                .Select(g => new CategoryStockDto(
+                    g.Key,
+                    g.Count(),
+                    g.Sum(p => p.CurrentStock * p.UnitPrice)))
+                .OrderByDescending(c => c.TotalValue),
+
+            TopMovedProducts: movements
+                .Where(m => m.Type == StockMovementType.Outbound)
+                .GroupBy(m => new
+                {
+                    m.Product.Name,
+                    m.Product.SKU
+                })
+                .Select(g => new TopMovedProductDto(
+                    g.Key.Name,
+                    g.Key.SKU,
+                    g.Sum(m => m.Quantity)))
+                .OrderByDescending(p => p.TotalOutbound)
+                .Take(5)
+        );
     }
 }

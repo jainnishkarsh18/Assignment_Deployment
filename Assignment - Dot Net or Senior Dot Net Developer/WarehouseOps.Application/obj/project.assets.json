@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 3,
   "targets": {
     "net8.0": {
       "WarehouseOps.Domain/1.0.0": {
@@ -27,40 +27,32 @@
     ]
   },
   "packageFolders": {
-    "D:\\Users\\Om.yadav\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\jainn\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Users\\Om.yadav\\source\\repos\\Interviews\\Assignment under 4-7 year exp\\WarehouseOps.Application\\WarehouseOps.Application.csproj",
+      "projectUniqueName": "C:\\Users\\jainn\\OneDrive\\Desktop\\Assignment\\Assignment - Dot Net or Senior Dot Net Developer\\WarehouseOps.Application\\WarehouseOps.Application.csproj",
       "projectName": "WarehouseOps.Application",
-      "projectPath": "D:\\Users\\Om.yadav\\source\\repos\\Interviews\\Assignment under 4-7 year exp\\WarehouseOps.Application\\WarehouseOps.Application.csproj",
-      "packagesPath": "D:\\Users\\Om.yadav\\.nuget\\packages\\",
-      "outputPath": "D:\\Users\\Om.yadav\\source\\repos\\Interviews\\Assignment under 4-7 year exp\\WarehouseOps.Application\\obj\\",
+      "projectPath": "C:\\Users\\jainn\\OneDrive\\Desktop\\Assignment\\Assignment - Dot Net or Senior Dot Net Developer\\WarehouseOps.Application\\WarehouseOps.Application.csproj",
+      "packagesPath": "C:\\Users\\jainn\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jainn\\OneDrive\\Desktop\\Assignment\\Assignment - Dot Net or Senior Dot Net Developer\\WarehouseOps.Application\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "D:\\Users\\Om.yadav\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\jainn\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
-          "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Users\\Om.yadav\\source\\repos\\Interviews\\Assignment under 4-7 year exp\\WarehouseOps.Domain\\WarehouseOps.Domain.csproj": {
-              "projectPath": "D:\\Users\\Om.yadav\\source\\repos\\Interviews\\Assignment under 4-7 year exp\\WarehouseOps.Domain\\WarehouseOps.Domain.csproj"
+            "C:\\Users\\jainn\\OneDrive\\Desktop\\Assignment\\Assignment - Dot Net or Senior Dot Net Developer\\WarehouseOps.Domain\\WarehouseOps.Domain.csproj": {
+              "projectPath": "C:\\Users\\jainn\\OneDrive\\Desktop\\Assignment\\Assignment - Dot Net or Senior Dot Net Developer\\WarehouseOps.Domain\\WarehouseOps.Domain.csproj"
             }
           }
         }
@@ -74,12 +66,10 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "10.0.300"
+      }
     },
     "frameworks": {
       "net8.0": {
-        "framework": "net8.0",
         "targetAlias": "net8.0",
         "imports": [
           "net461",
@@ -97,7 +87,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.422/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

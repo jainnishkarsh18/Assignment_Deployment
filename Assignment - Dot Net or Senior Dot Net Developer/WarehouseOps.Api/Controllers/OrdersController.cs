@@ -22,7 +22,9 @@ public class OrdersController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10, [FromQuery] string? status = null)
     {
-        throw new NotImplementedException("TODO 1");
+        var result = await _orders.GetOrdersAsync(page, pageSize, status);
+
+        return Ok(result);
     }
 
     // TODO 2: GET api/orders/{id}
@@ -31,7 +33,13 @@ public class OrdersController : ControllerBase
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetById(int id)
     {
-        throw new NotImplementedException("TODO 2");
+        var result = await _orders.GetOrderDetailAsync(id);
+
+        if (!result.IsSuccess)
+        {
+            return NotFound(new { error = result.Error });
+        }
+        return Ok(result.Value);
     }
 
     // TODO 3: POST api/orders/{id}/fulfill
@@ -42,7 +50,20 @@ public class OrdersController : ControllerBase
     [HttpPost("{id:int}/fulfill")]
     public async Task<IActionResult> Fulfill(int id)
     {
-        throw new NotImplementedException("TODO 3");
+        var result = await _orders.FulfillOrderAsync(new FulfillOrderDto(id),
+                                                User.Identity?.Name ?? "System");
+
+        if (!result.IsSuccess)
+        {
+            if (string.Equals(result.Error, "Order not found.", StringComparison.OrdinalIgnoreCase))
+            {
+                return NotFound(new { error = result.Error });
+            }
+
+            return BadRequest(new { error = result.Error });
+        }
+
+        return Ok(result.Value);
     }
 
     // TODO 4: GET api/orders/overdue
@@ -51,6 +72,8 @@ public class OrdersController : ControllerBase
     [HttpGet("overdue")]
     public async Task<IActionResult> GetOverdue()
     {
-        throw new NotImplementedException("TODO 4");
+        var result = await _orders.GetOverdueOrdersAsync();
+
+        return Ok(result);
     }
 }
